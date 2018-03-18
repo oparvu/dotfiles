@@ -1,2 +1,3 @@
 # dotfiles
-Repository of dotfiles
+
+Repository of dotfiles.
