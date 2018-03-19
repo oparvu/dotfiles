@@ -144,7 +144,7 @@ nmap n daw
 nmap <C-D> dd
 
 " Duplicate current line
-nmap <S-D> yyp
+nmap d yyp
 
 " Insert mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -158,6 +158,6 @@ imap n <Esc>dawi
 " Delete current line
 imap <C-D> dd
 
-" Duplicate current line
-imap <S-D> yyp
+" Duplicate current line (<A-D>)
+imap d yyp
 
