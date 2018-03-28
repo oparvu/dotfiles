@@ -79,9 +79,6 @@ set noshowmode
 " dialogue asking if you wish to save changed files
 set confirm
 
-" Enable use of the mouse for all modes
-set mouse=a
-
 " Show line numbers
 set number
 
