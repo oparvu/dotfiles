@@ -86,7 +86,7 @@ set number
 highlight LineNr term=bold cterm=NONE ctermfg=235 ctermbg=NONE gui=NONE guifg=gray22 guibg=NONE
 
 " Configure which whitespace characters to show
-set listchars=eol:¶,tab:»·,trail:·,extends:>,precedes:<,space:·
+set listchars=eol:¶,tab:»-,trail:·,extends:>,precedes:<,space:·
 
 " Show whitespace characters
 set list
@@ -105,6 +105,7 @@ set pastetoggle=<F9>
 
 " Show existing tab with 4 spaces width
 set softtabstop=4
+set tabstop=4
 
 " When indenting with '>', use 4 spaces width
 set shiftwidth=4
