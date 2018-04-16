@@ -129,33 +129,3 @@ set nofoldenable
 " Key mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Normal mode
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Delete previous word (<A-P>)
-nmap p i<C-W><Esc>
-
-" Delete next word (<A-N>)
-nmap n daw
-
-" Delete current line
-nmap <C-D> dd
-
-" Duplicate current line
-nmap d yyp
-
-" Insert mode
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Delete previous word (<A-P>)
-imap p <C-W>
-
-" Delete next word (<A-N>)
-imap n <Esc>dawi
-
-" Delete current line
-imap <C-D> dd
-
-" Duplicate current line (<A-D>)
-imap d yyp
-
