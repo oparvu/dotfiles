@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+
+###############################################################################
+# Configure bash prompt variable PS1.
+#
+# This script is used to configure the bash prompt variable PS1.
+###############################################################################
+
+
+###############################################################################
+# Constants
+###############################################################################
+
+# Colours and formatting related
+FORMATTING_BOLD_BLUE="\033[1;34m";
+FORMATTING_BOLD_GREEN="\033[1;32m";
+FORMATTING_GREEN="\033[0;32m";
+FORMATTING_RED="\033[0;31m";
+FORMATTING_RESET="\033[0m";
+
+# Escape sequences (for more details see:
+# https://www.gnu.org/software/bash/manual/bashref.html#Controlling-the-Prompt)
+HOSTNAME="\\H";
+USERNAME="\\u";
+WORKING_DIRECTORY="\\w";
+
+
+###############################################################################
+# Functions
+###############################################################################
+
+# Print git status.
+# 
+# Currently the git status comprises the git branch name if the current
+# directory belongs to the work tree of a git repository, and is empty
+# otherwise.
+printGitStatus() {
+    # Does the current directory belong to the work tree of a git repository?
+    if [[ -z $(git rev-parse --is-inside-work-tree 2>/dev/null) ]]; then
+        return 1;
+    fi
+
+    local gitBranchName;
+    local gitBranchColor;
+
+    gitBranchName=$(git rev-parse --abbrev-ref HEAD);
+
+    if [[ -z "$(git status --short)" ]]; then
+        gitBranchColor=${FORMATTING_GREEN};
+    else
+        gitBranchColor=${FORMATTING_RED};
+    fi
+
+    printf " ${gitBranchColor}(${gitBranchName})";
+}
+
+
+###############################################################################
+# Main
+###############################################################################
+
+# Build the bash prompt variable PS1
+PS1="${FORMATTING_BOLD_GREEN}${USERNAME}@${HOSTNAME}";  # Username@Hostname
+PS1+="${FORMATTING_RESET}:";                            # :
+PS1+="${FORMATTING_BOLD_BLUE}${WORKING_DIRECTORY}";     # Working directory
+PS1+="\$(printGitStatus)"                               # Git repository status
+PS1+="${FORMATTING_RESET}$ ";                           # $
+
