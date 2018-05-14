@@ -13,11 +13,13 @@
 ###############################################################################
 
 # Colours and formatting related
-FORMATTING_BOLD_BLUE="\033[1;34m";
-FORMATTING_BOLD_GREEN="\033[1;32m";
-FORMATTING_GREEN="\033[0;32m";
-FORMATTING_RED="\033[0;31m";
-FORMATTING_RESET="\033[0m";
+FORMATTING_BOLD_BLUE='\[\e[1;34m\]';
+FORMATTING_BOLD_GREEN='\[\e[1;32m\]';
+FORMATTING_RESET='\[\e[0m\]';
+
+# Colours and formatting related (should be used in functions only)
+FORMATTING_FUNC_GREEN='\001\e[0;32m\002';
+FORMATTING_FUNC_RED='\001\e[0;31m\002';
 
 # Escape sequences (for more details see:
 # https://www.gnu.org/software/bash/manual/bashref.html#Controlling-the-Prompt)
@@ -37,22 +39,35 @@ WORKING_DIRECTORY="\\w";
 # otherwise.
 printGitStatus() {
     # Does the current directory belong to the work tree of a git repository?
-    if [[ -z $(git rev-parse --is-inside-work-tree 2>/dev/null) ]]; then
-        return 1;
+    if [[ -z "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
+        return;
     fi
 
     local gitBranchName;
-    local gitBranchColor;
 
     gitBranchName=$(git rev-parse --abbrev-ref HEAD);
 
+    # Print git branch name
     if [[ -z "$(git status --short)" ]]; then
-        gitBranchColor=${FORMATTING_GREEN};
+        printf " ${FORMATTING_FUNC_GREEN}(%s)" "${gitBranchName}";
     else
-        gitBranchColor=${FORMATTING_RED};
+        printf " ${FORMATTING_FUNC_RED}(%s)" "${gitBranchName}";
     fi
+}
 
-    printf " ${gitBranchColor}(${gitBranchName})";
+# Set the PS1 bash prompt.
+setPS1Prompt() {
+    PS1="${FORMATTING_BOLD_GREEN}${USERNAME}@${HOSTNAME}${FORMATTING_RESET}";   # Username@Hostname
+    PS1+=":";                                                                   # :
+    PS1+="${FORMATTING_BOLD_BLUE}${WORKING_DIRECTORY}${FORMATTING_RESET}";      # Working directory
+    PS1+="\$(printGitStatus)${FORMATTING_RESET}";                               # Git repository status
+    PS1+="\\n";                                                                 # New line
+    PS1+="$ ";                                                                  # $
+}
+
+# Set the tab/window title.
+setWindowTitle() {
+    echo -en "\\e]2;$(pwd)\\a";
 }
 
 
@@ -60,10 +75,5 @@ printGitStatus() {
 # Main
 ###############################################################################
 
-# Build the bash prompt variable PS1
-PS1="${FORMATTING_BOLD_GREEN}${USERNAME}@${HOSTNAME}";  # Username@Hostname
-PS1+="${FORMATTING_RESET}:";                            # :
-PS1+="${FORMATTING_BOLD_BLUE}${WORKING_DIRECTORY}";     # Working directory
-PS1+="\$(printGitStatus)"                               # Git repository status
-PS1+="${FORMATTING_RESET}$ ";                           # $
-
+# Set PS1 bash prompt
+PROMPT_COMMAND="setPS1Prompt;setWindowTitle";
