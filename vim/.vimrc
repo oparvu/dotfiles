@@ -52,6 +52,10 @@ let g:airline#extensions#branch#enabled=1
 " Usability
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Do not wait for a key code or mapped key sequence to complete
+set timeoutlen=1000
+set ttimeoutlen=0
+
 " Better command-line completion
 set wildmenu
 
