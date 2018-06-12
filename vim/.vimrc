@@ -36,6 +36,7 @@ endif
 
 " Install plugins (using the command :PlugInstall)
 call plug#begin('~/.vim/plugged')
+Plug 'chrisbra/vim-diff-enhanced'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -46,6 +47,18 @@ let g:airline_theme='minimalist'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#hunks#enabled=1
 let g:airline#extensions#branch#enabled=1
+
+" vim-diff-enhanced related
+if &diff
+    " Change colors
+    highlight DiffAdd    cterm=NONE ctermfg=NONE ctermbg=22  gui=NONE guifg=bg guibg=NONE
+    highlight DiffDelete cterm=NONE ctermfg=NONE ctermbg=52  gui=NONE guifg=bg guibg=NONE
+    highlight DiffChange cterm=NONE ctermfg=NONE ctermbg=237 gui=NONE guifg=bg guibg=NONE
+    highlight DiffText   cterm=NONE ctermfg=15   ctermbg=58  gui=NONE guifg=bg guibg=NONE
+
+    " Use the "myers" algorithm for diffs
+    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=myers")'
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -96,7 +109,7 @@ set list
 
 " Set whitespace characters color
 highlight SpecialKey cterm=NONE ctermfg=235 ctermbg=NONE gui=NONE guifg=gray22 guibg=NONE
-highlight NonText cterm=NONE ctermfg=235 ctermbg=NONE gui=NONE guifg=gray22 guibg=NONE
+highlight NonText    cterm=NONE ctermfg=235 ctermbg=NONE gui=NONE guifg=gray22 guibg=NONE
 
 " Use <F9> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F9>
