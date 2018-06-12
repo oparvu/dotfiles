@@ -1,0 +1,2 @@
+# Do not handle any signals
+handle all nostop
