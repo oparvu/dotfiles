@@ -101,6 +101,12 @@ set number
 " Change line numbers color
 highlight LineNr term=bold cterm=NONE ctermfg=235 ctermbg=NONE gui=NONE guifg=gray22 guibg=NONE
 
+" Print line margin
+let &colorcolumn=join(range(120,256),",")
+
+" Set print line margin color
+highlight ColorColumn ctermbg=235
+
 " Configure which whitespace characters to show
 set listchars=eol:¶,tab:»-,trail:·,extends:>,precedes:<,space:·
 
