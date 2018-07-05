@@ -43,6 +43,8 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " vim-airline plugin related
+" Assumption: Patched powerline fonts are installed on this machine
+"             (e.g. using `sudo apt-get install fonts-powerline`).
 let g:airline_theme='minimalist'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#hunks#enabled=1
