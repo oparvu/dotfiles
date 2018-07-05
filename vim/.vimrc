@@ -67,6 +67,11 @@ endif
 " Usability
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Set output encoding of files displayed in terminal and/or written to
+" disk to UTF-8
+set encoding=utf-8
+set fileencoding=utf-8
+
 " Do not wait for a key code or mapped key sequence to complete
 set timeoutlen=1000
 set ttimeoutlen=0
