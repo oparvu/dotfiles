@@ -37,10 +37,18 @@ endif
 " Install plugins (using the command :PlugInstall)
 call plug#begin('~/.vim/plugged')
 Plug 'chrisbra/vim-diff-enhanced'
+Plug '~/.fzf'                           " Assumption: Installed as per https://github.com/junegunn/fzf#using-git
+Plug 'junegunn/fzf.vim'                 " Requires: ag (see https://github.com/ggreer/the_silver_searcher)
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
+
+" vim-gutentags plugin related
+let g:gutentags_cache_dir='/home/ovidiu/.gutentags'
+let g:gutentags_ctags_tagfile='tags'
+let g:gutentags_ctags_exclude=['*/build/*']
 
 " vim-airline plugin related
 " Assumption: Patched powerline fonts are installed on this machine
@@ -179,3 +187,15 @@ set nofoldenable
 " Key mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" fzf related
+nnoremap <C-h> :Ag<CR>
+nnoremap <C-f> :BLines<CR>
+nnoremap <C-p> :Files<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Abbreviations
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+iab todo // TODO(ovparvu@microsoft.com): 
+iab torem // TODO(ovparvu@microsoft.com): Remove
