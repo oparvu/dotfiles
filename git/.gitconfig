@@ -1,0 +1,15 @@
+[user]
+	name = Ovidiu Parvu
+	email = ovidiu.parvu@gmail.com
+[rerere]
+	enabled = 1
+[alias]
+	adog = log --all --decorate --oneline --graph
+	logp = log --pretty=oneline
+	logpg = log --pretty=oneline --graph
+[core]
+	editor = vim
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
