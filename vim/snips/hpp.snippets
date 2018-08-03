@@ -1,0 +1,47 @@
+snippet todo "Add a 'TODO' comment"
+// TODO(ovidiu.parvu@gmail.com): 
+endsnippet
+
+snippet torem "Add a 'TODO: Remove' comment"
+// TODO(ovidiu.parvu@gmail.com): Remove
+endsnippet
+
+snippet toimpl "Add a 'TODO: Implement' comment"
+// TODO(ovidiu.parvu@gmail.com): Implement
+endsnippet
+
+snippet newclass "Define a new class"
+/*!
+ *
+ */
+class ${1:ClassName} {
+
+public:
+    $1() = default;
+    $1(const $1&) = delete;
+    $1($1&&) = delete;
+    ~$1() = default;
+
+    $1& operator=(const $1&) = delete;
+    $1& operator=($1&&) = delete;
+
+private:
+    $0
+
+}
+endsnippet
+
+snippet newheader "Initialize a new header file"
+// Copyright (C) `date +%Y` Ovidiu Parvu
+
+#ifndef ${1:`!p snip.rv = snip.basename.upper()`_HPP}
+#define $1
+
+namespace ${2:oparvu} {
+
+$0
+
+} // namespace $2
+
+#endif // $1
+endsnippet
