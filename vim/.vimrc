@@ -36,6 +36,7 @@ endif
 
 " Install plugins (using the command :PlugInstall)
 call plug#begin('~/.vim/plugged')
+Plug 'aacunningham/vim-fuzzy-stash'     " Requires: fzf
 Plug 'chrisbra/vim-diff-enhanced'
 Plug '~/.fzf'                           " Assumption: Installed as per https://github.com/junegunn/fzf#using-git
 Plug 'junegunn/fzf.vim'                 " Requires: ag (see https://github.com/ggreer/the_silver_searcher)
