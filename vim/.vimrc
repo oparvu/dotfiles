@@ -88,9 +88,11 @@ if &diff
 endif
 
 " vim-gutentags plugin related
+" Assumption: '--fields=+l' is present in the ~/.ctags file
 let g:gutentags_cache_dir='~/.gutentags'
 let g:gutentags_ctags_tagfile='tags'
-let g:gutentags_ctags_exclude=['*/build/*']
+let g:gutentags_ctags_exclude=['*/.scons/*', '*/.travis/*', '*/bin/*', '*/build/*', '*/deploy/*']
+let g:gutentags_generate_on_write=0
 
 " UltiSnips plugin related
 let g:UltiSnipsEditSplit="vertical"
