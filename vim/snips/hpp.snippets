@@ -1,6 +1,5 @@
 snippet todo "Add a 'TODO' comment"
-// TODO(ovidiu.parvu@gmail.com): 
-$0
+// TODO(ovidiu.parvu@gmail.com): $0
 endsnippet
 
 snippet torem "Add a 'TODO: Remove' comment"
@@ -31,11 +30,11 @@ public:
 private:
     $0
 
-}
+};
 endsnippet
 
 snippet newheader "Initialize a new header file"
-// Copyright (C) `date +%Y` Ovidiu Parvu
+// Copyright·(C)·`date·+%Y`·Ovidiu·Parvu. All Rights Reserved.
 
 #ifndef ${1:`!p snip.rv = snip.basename.upper()`_HPP}
 #define $1
