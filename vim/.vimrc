@@ -43,9 +43,25 @@ Plug 'junegunn/fzf.vim'                 " Requires: ag (see https://github.com/g
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'SirVer/UltiSnips'                 " Requires: vim with python support
 Plug 'tpope/vim-fugitive'
+Plug 'Valloric/YouCompleteMe'           " Requires: vim with python support and building ycm
+                                        " (see https://github.com/Valloric/YouCompleteMe#installation for details)
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/Conque-GDB'
+Plug 'w0rp/ale'
 call plug#end()
+
+" ale plugin related
+let g:ale_linters_explicit=1
+let g:ale_sign_column_always=0
+let g:ale_change_sign_column_color=0
+
+" UltiSnips plugin related
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsSnippetDirectories=[$HOME . '/.vim/snips']
 
 " vim-airline plugin related
 " Assumption: Patched powerline fonts are installed on this machine
@@ -95,12 +111,13 @@ let g:gutentags_ctags_tagfile='tags'
 let g:gutentags_ctags_exclude=['*/.scons/*', '*/.travis/*', '*/bin/*', '*/build/*', '*/deploy/*']
 let g:gutentags_generate_on_write=0
 
-" UltiSnips plugin related
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-k>"
-let g:UltiSnipsSnippetDirectories=[$HOME . '/.vim/snips']
+" YouCompleteMe plugin related
+set completeopt-=preview
+let g:ycm_max_num_identifier_candidates=5
+let g:ycm_max_num_candidates=5
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_goto_buffer_command='same-buffer'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -118,6 +135,9 @@ set ttimeoutlen=0
 
 " Better command-line completion
 set wildmenu
+
+" Hide buffers containing changes rather than closing them
+set hidden
 
 " Allow backspacing over autoindent, line breaks and start of insert
 " action
@@ -148,6 +168,15 @@ set number
 " Change line numbers color
 highlight LineNr term=bold cterm=NONE ctermfg=235 ctermbg=NONE gui=NONE guifg=gray22 guibg=NONE
 
+" Highlight current line
+set cursorline
+
+" Set current line colors
+highlight CursorLine ctermbg=NONE cterm=NONE
+
+" Set sign column color
+highlight SignColumn ctermbg=NONE ctermfg=0 cterm=NONE gui=NONE guifg=black guibg=NONE
+
 " Print line margin
 let &colorcolumn=121
 
@@ -155,7 +184,7 @@ let &colorcolumn=121
 highlight ColorColumn ctermbg=235
 
 " Configure which whitespace characters to show
-set listchars=eol:¶,tab:»-,trail:·,extends:>,precedes:<,space:·
+set listchars=eol:¶,tab:»-,trail:·,extends:>,precedes:<
 
 " Show whitespace characters
 set list
@@ -203,3 +232,6 @@ nnoremap <C-b> :Windows<CR>
 nnoremap <C-f> :BLines<CR>
 nnoremap <C-h> :Ag<CR>
 nnoremap <C-p> :Files<CR>
+
+" YouCompleteMe related
+nnoremap <F3> :YcmCompleter GoTo<CR>
