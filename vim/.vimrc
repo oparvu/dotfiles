@@ -113,6 +113,7 @@ let g:gutentags_generate_on_write=0
 
 " YouCompleteMe plugin related
 set completeopt-=preview
+let g:ycm_auto_trigger=0
 let g:ycm_max_num_identifier_candidates=5
 let g:ycm_max_num_candidates=5
 let g:ycm_autoclose_preview_window_after_completion=1
